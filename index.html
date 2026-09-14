@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EventMate - Plan. Join. Enjoy. A simple event platform for sports, parties, trips and community activities." />
+  <title>EventMate | Plan. Join. Enjoy.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="EventMate home">
+      <span class="brand-mark">E</span>
+      <span>EventMate</span>
+    </a>
+    <nav class="nav">
+      <a href="#discover">Discover</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" data-action="join">Join event</button>
+      <button class="btn btn-primary" data-action="create">Create event</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">Your events. Your people. One place.</span>
+        <h1>Plan. Join. <span>Enjoy.</span></h1>
+        <p>EventMate makes it easy to organise sports, parties, trips, dinners and community events — with RSVPs, shared costs and group updates in one simple place.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" data-action="create">Create an event</button>
+          <button class="btn btn-light btn-lg" data-action="join">Join with a code</button>
+        </div>
+        <div class="trust-row">
+          <span>✓ No app needed to join</span>
+          <span>✓ Share by link or code</span>
+          <span>✓ Mobile friendly</span>
+        </div>
+      </div>
+
+      <div class="hero-panel" aria-label="EventMate event preview">
+        <div class="mini-card accent-purple">
+          <div class="mini-icon">🏸</div>
+          <div>
+            <small>Tonight</small>
+            <strong>Badminton Night</strong>
+            <span>7:00 PM · 8/12 joined</span>
+          </div>
+          <span class="status going">Going</span>
+        </div>
+        <div class="mini-card accent-orange">
+          <div class="mini-icon">🍖</div>
+          <div>
+            <small>Saturday</small>
+            <strong>Family BBQ</strong>
+            <span>12:00 PM · 21 guests</span>
+          </div>
+          <span class="status pending">RSVP</span>
+        </div>
+        <div class="mini-card accent-green">
+          <div class="mini-icon">🚗</div>
+          <div>
+            <small>Next weekend</small>
+            <strong>Jervis Bay Trip</strong>
+            <span>2 days · 4 cars</span>
+          </div>
+          <span class="status info">View</span>
+        </div>
+        <div class="balance-card">
+          <div>
+            <small>Your group balance</small>
+            <strong>$7.50 credit</strong>
+          </div>
+          <div>
+            <small>Group fund</small>
+            <strong>$284.60</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="discover">
+      <div class="section-heading">
+        <span class="eyebrow">Made for every occasion</span>
+        <h2>What are you organising?</h2>
+        <p>Start with a ready-made event type, then customise the details for your group.</p>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card sport"><div class="category-icon">🏸</div><h3>Sports</h3><p>Badminton, cricket, football, tennis and more.</p></article>
+        <article class="category-card party"><div class="category-icon">🎉</div><h3>Parties</h3><p>Birthdays, celebrations, dinners and family gatherings.</p></article>
+        <article class="category-card trip"><div class="category-icon">🧳</div><h3>Trips</h3><p>Day trips, holidays, camping and group travel.</p></article>
+        <article class="category-card community"><div class="category-icon">🤝</div><h3>Community</h3><p>Charity, meetings, volunteering and local programs.</p></article>
+        <article class="category-card food"><div class="category-icon">🍽️</div><h3>Food & BBQ</h3><p>Picnics, BBQs, potlucks and restaurant gatherings.</p></article>
+        <article class="category-card custom"><div class="category-icon">✨</div><h3>Anything else</h3><p>Create your own custom event from scratch.</p></article>
+      </div>
+    </section>
+
+    <section class="section split-section" id="how-it-works">
+      <div class="section-heading left">
+        <span class="eyebrow">Simple from start to finish</span>
+        <h2>Organise without the messy group chat.</h2>
+        <p>Create the event once. EventMate keeps track of invitations, attendance, costs and payments for you.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span>1</span><div><h3>Create</h3><p>Add date, time, venue, participant limit and optional costs.</p></div></div>
+        <div class="step"><span>2</span><div><h3>Invite</h3><p>Share one link or event code through WhatsApp, Messenger or SMS.</p></div></div>
+        <div class="step"><span>3</span><div><h3>Join</h3><p>Guests can answer Going, Maybe or Can't attend — even without an account.</p></div></div>
+        <div class="step"><span>4</span><div><h3>Enjoy</h3><p>Confirm attendance, record expenses and automatically split shared costs.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <span class="eyebrow">Built around real groups</span>
+        <h2>Useful features from day one</h2>
+      </div>
+      <div class="feature-grid">
+        <article><span>✅</span><h3>Quick RSVP</h3><p>Going, Maybe or Can't attend with one tap.</p></article>
+        <article><span>🔁</span><h3>Recurring events</h3><p>Perfect for weekly sports and regular group activities.</p></article>
+        <article><span>💳</span><h3>Shared expenses</h3><p>Split court fees, food, transport and other event costs.</p></article>
+        <article><span>💰</span><h3>Group balance</h3><p>Keep credits, payments and shared group funds organised.</p></article>
+        <article><span>📊</span><h3>Event history</h3><p>See past attendance, costs and activity in one place.</p></article>
+        <article><span>🔔</span><h3>Reminders</h3><p>Help members remember to RSVP, pay or show up on time.</p></article>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div>
+        <span class="eyebrow">Start something together</span>
+        <h2>Your next event can be organised in minutes.</h2>
+      </div>
+      <button class="btn btn-primary btn-lg" data-action="create">Create your first event</button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand footer-brand"><span class="brand-mark">E</span><span>EventMate</span></div>
+    <p>Plan. Join. Enjoy.</p>
+    <p class="copyright">© <span id="year"></span> EventMate</p>
+  </footer>
+
+  <div class="modal-backdrop" id="createModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="createTitle">
+      <button class="modal-close" aria-label="Close" data-close>&times;</button>
+      <span class="eyebrow">New event</span>
+      <h2 id="createTitle">Create an event</h2>
+      <form id="eventForm">
+        <label>Event name<input type="text" name="name" placeholder="e.g. Friday Badminton" required /></label>
+        <label>Event type<select name="type"><option>Sports</option><option>Party</option><option>Trip</option><option>Community</option><option>Food & BBQ</option><option>Other</option></select></label>
+        <div class="form-row"><label>Date<input type="date" name="date" required /></label><label>Time<input type="time" name="time" required /></label></div>
+        <label>Location<input type="text" name="location" placeholder="Venue or meeting place" /></label>
+        <div class="form-row"><label>Maximum participants<input type="number" min="1" name="capacity" placeholder="12" /></label><label>Estimated cost ($)<input type="number" min="0" step="0.01" name="cost" placeholder="0.00" /></label></div>
+        <button type="submit" class="btn btn-primary btn-full">Create event</button>
+      </form>
+      <p class="modal-note">Demo version: events are currently stored only in your browser.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="joinModal" hidden>
+    <div class="modal small" role="dialog" aria-modal="true" aria-labelledby="joinTitle">
+      <button class="modal-close" aria-label="Close" data-close>&times;</button>
+      <span class="eyebrow">Join an event</span>
+      <h2 id="joinTitle">Enter your event code</h2>
+      <form id="joinForm">
+        <label>Event code<input type="text" name="code" placeholder="e.g. EVT-2481" required /></label>
+        <button type="submit" class="btn btn-primary btn-full">Find event</button>
+      </form>
+      <p class="modal-note">The live join system will be connected to the database in a later version.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
