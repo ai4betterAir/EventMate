@@ -11,146 +11,20 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#home"><span class="brand-mark">E</span><span>EventMate</span></a>
-    <nav class="nav">
-      <a href="#sports">Sports</a><a href="#money">Costs & Payments</a><a href="#events">Events</a><a href="#how">How it works</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="btn btn-ghost" data-action="join">Join group</button>
-      <button class="btn btn-primary" data-action="create">Create group</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <span class="eyebrow">One place for every group</span>
-        <h1>Play together.<br><span>Plan together.</span></h1>
-        <p>Create a sports or social group, invite your people, organise recurring sessions, track attendance, split real costs fairly and keep every payment clear.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" data-action="create">Create a group</button>
-          <button class="btn btn-light btn-lg" data-action="join">Join with a code</button>
-        </div>
-        <div class="trust-row"><span>✓ Weekly & fortnightly sessions</span><span>✓ Admin approval for payments</span><span>✓ Built for mobile</span></div>
-      </div>
-
-      <div class="app-window">
-        <div class="app-top"><div><span class="live-dot"></span> Badminton Legends</div><span class="admin-pill">Admin</span></div>
-        <div class="metric-row">
-          <div class="metric"><small>Next session</small><strong>Fri 7:30 PM</strong><span>10 / 12 joined</span></div>
-          <div class="metric"><small>Group fund</small><strong>$246.80</strong><span>Healthy balance</span></div>
-          <div class="metric"><small>Pending</small><strong>3 payments</strong><span>Need approval</span></div>
-        </div>
-        <div class="session-card">
-          <div class="session-title"><div class="sport-badge">🏸</div><div><small>Weekly session</small><strong>Friday Badminton</strong><span>Campbelltown · 2 courts · 7:30–9:30 PM</span></div><span class="status open">Open</span></div>
-          <div class="attendee-strip"><span>MA</span><span>RH</span><span>SA</span><span>AK</span><span>+6</span><b>2 spots left</b></div>
-        </div>
-        <div class="cost-preview">
-          <div><small>Court</small><strong>$64.00</strong></div><span>+</span><div><small>Shuttles</small><strong>$30.00</strong></div><span>=</span><div class="total"><small>Total</small><strong>$94.00</strong></div><div class="per-head"><small>Per player</small><strong>$9.40</strong></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft" id="sports">
-      <div class="section-heading"><span class="eyebrow">Sports groups</span><h2>Pick your sport. EventMate adapts the session.</h2><p>Every sport starts with the same simple group structure, then shows sport-specific fields such as courts, fields, tables, equipment or match details.</p></div>
-      <div class="sport-grid">
-        <article><span>🏸</span><h3>Badminton</h3><p>Courts, shuttles, player caps and per-session sharing.</p></article>
-        <article><span>⚽</span><h3>Football</h3><p>Pitch hire, teams, bibs, balls and match attendance.</p></article>
-        <article><span>🏏</span><h3>Cricket</h3><p>Ground fees, teams, equipment and match costs.</p></article>
-        <article><span>🎾</span><h3>Tennis</h3><p>Court booking, balls, singles/doubles and player limits.</p></article>
-        <article><span>🏓</span><h3>Table Tennis</h3><p>Tables, balls, venue fees and rotation lists.</p></article>
-        <article><span>🏀</span><h3>Basketball</h3><p>Court booking, teams, game fees and attendance.</p></article>
-        <article><span>🏐</span><h3>Volleyball</h3><p>Court/ground, teams, equipment and session fees.</p></article>
-        <article><span>🏑</span><h3>Hockey</h3><p>Field hire, match lists, equipment and shared fees.</p></article>
-        <article><span>➕</span><h3>More sports</h3><p>Running, swimming, futsal, squash, golf and custom sports.</p></article>
-      </div>
-    </section>
-
-    <section class="section workflow-section" id="how">
-      <div class="section-heading left"><span class="eyebrow">From group to game</span><h2>A recurring sports group should almost run itself.</h2></div>
-      <div class="workflow">
-        <div class="flow-card"><b>01</b><span>👥</span><h3>Create group</h3><p>Creator becomes Owner/Admin and can promote other trusted members to Admin.</p></div>
-        <div class="flow-card"><b>02</b><span>🔗</span><h3>Invite members</h3><p>Share a group link, QR code or short code. Members join once and stay in the group.</p></div>
-        <div class="flow-card"><b>03</b><span>🔁</span><h3>Schedule sessions</h3><p>One-off, weekly, fortnightly or monthly. Set venue, time, courts and maximum players.</p></div>
-        <div class="flow-card"><b>04</b><span>✅</span><h3>Confirm attendance</h3><p>Going, Maybe or Not going. Waiting list starts automatically when capacity is full.</p></div>
-        <div class="flow-card"><b>05</b><span>🧮</span><h3>Calculate share</h3><p>Admin enters real session expenses after play; EventMate calculates each attendee's share.</p></div>
-        <div class="flow-card"><b>06</b><span>🧾</span><h3>Verify payments</h3><p>Member submits amount and receipt screenshot. Admin checks the bank and approves or rejects.</p></div>
-      </div>
-    </section>
-
-    <section class="section money-section" id="money">
-      <div class="section-heading"><span class="eyebrow">Badminton example</span><h2>Fair costs without a spreadsheet.</h2><p>Shuttle price is stored once for the group. Each session uses only the number actually consumed, then court and equipment costs are divided among confirmed attendees.</p></div>
-      <div class="money-grid">
-        <div class="calculator-card">
-          <div class="card-head"><div><small>SESSION COST CALCULATOR</small><h3>Friday Badminton · 18 Sep</h3></div><span class="status complete">Attendance confirmed</span></div>
-          <div class="calc-fields">
-            <label>Number of courts<input id="courts" type="number" value="2" min="0"></label>
-            <label>Total court booking ($)<input id="courtCost" type="number" value="64" min="0" step="0.01"></label>
-            <label>Shuttle tube cost ($)<input id="tubeCost" type="number" value="36" min="0" step="0.01"></label>
-            <label>Shuttles per tube<input id="tubeQty" type="number" value="12" min="1"></label>
-            <label>Shuttles used today<input id="shuttlesUsed" type="number" value="10" min="0"></label>
-            <label>Players attended<input id="players" type="number" value="10" min="1"></label>
-          </div>
-          <div class="formula-box"><div><small>Per shuttle</small><strong id="perShuttle">$3.00</strong><span>Tube cost ÷ shuttles</span></div><div><small>Shuttle cost today</small><strong id="shuttleSession">$30.00</strong><span>Used × per shuttle</span></div><div><small>Total session cost</small><strong id="totalSession">$94.00</strong><span>Court + shuttle</span></div><div class="highlight"><small>Each player pays</small><strong id="playerShare">$9.40</strong><span>Total ÷ attendees</span></div></div>
-        </div>
-
-        <div class="approval-card">
-          <div class="card-head"><div><small>ADMIN PAYMENT INBOX</small><h3>Waiting for review</h3></div><span class="count-badge">3 pending</span></div>
-          <div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Rahim H.</strong><span>$20.00 · PayID · Today 8:42 PM</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div>
-          <div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Samir A.</strong><span>$10.00 · Bank transfer · Today 7:12 PM</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div>
-          <div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Akhtar K.</strong><span>$30.00 · PayID · Yesterday</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div>
-          <div class="payment-note">Only an approved payment changes the member balance and group fund.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft" id="events">
-      <div class="section-heading"><span class="eyebrow">Beyond sports</span><h2>Use the same group for the moments around the game.</h2><p>Create one-off social and community events with guest limits, RSVPs, tasks, contributions and shared expenses.</p></div>
-      <div class="event-grid">
-        <article class="event-tile bbq"><div class="event-emoji">🔥</div><div><small>Food & Social</small><h3>BBQ</h3><p>Guest RSVP · Food list · Shared shopping · Per-family or per-person split</p></div></article>
-        <article class="event-tile picnic"><div class="event-emoji">🧺</div><div><small>Outdoor</small><h3>Picnic</h3><p>Location · What to bring · Families · Transport · Shared costs</p></div></article>
-        <article class="event-tile farewell"><div class="event-emoji">🎉</div><div><small>Celebration</small><h3>Farewell Party</h3><p>Invitations · Contributions · Gift fund · Food · Attendance</p></div></article>
-        <article class="event-tile trip"><div class="event-emoji">🚙</div><div><small>Travel</small><h3>Group Trip</h3><p>Cars · Accommodation · Fuel · Tickets · Shared itinerary</p></div></article>
-        <article class="event-tile dinner"><div class="event-emoji">🍽️</div><div><small>Gathering</small><h3>Dinner</h3><p>Restaurant · Booking count · Menu notes · Split bill</p></div></article>
-        <article class="event-tile custom"><div class="event-emoji">✨</div><div><small>Anything</small><h3>Custom Event</h3><p>Start from a blank event and choose exactly what your group needs.</p></div></article>
-      </div>
-    </section>
-
-    <section class="section admin-section">
-      <div class="admin-demo">
-        <div class="admin-copy"><span class="eyebrow">Clear roles</span><h2>Members see what they need. Admins control what matters.</h2><p>The group owner can add multiple admins. Admins manage sessions, attendance, costs, payment verification and group settings. Members RSVP, view their balance and submit payments.</p><div class="role-list"><span><b>Owner</b> Full control</span><span><b>Admin</b> Manage group & finance</span><span><b>Member</b> RSVP, attend & pay</span><span><b>Guest</b> Event-only access</span></div></div>
-        <div class="member-table">
-          <div class="table-head"><span>Member</span><span>Role</span><span>Balance</span><span>Status</span></div>
-          <div><span><i>MA</i> Masrur Ahmed</span><span class="role owner">Owner</span><strong>+$24.60</strong><span class="paid">Active</span></div>
-          <div><span><i>RH</i> Rahim H.</span><span class="role admin">Admin</span><strong>-$9.40</strong><span class="due">Due</span></div>
-          <div><span><i>SA</i> Samir A.</span><span class="role member">Member</span><strong>$0.00</strong><span class="paid">Clear</span></div>
-          <div><span><i>AK</i> Akhtar K.</span><span class="role member">Member</span><strong>+$6.20</strong><span class="paid">Credit</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section"><div><span class="eyebrow">EventMate</span><h2>One group. Every session. Every dollar. Clearly managed.</h2><p>Start with badminton tonight, then use the same platform for your whole community.</p></div><button class="btn btn-primary btn-lg" data-action="create">Create your first group</button></section>
-  </main>
-
-  <footer><div class="brand footer-brand"><span class="brand-mark">E</span><span>EventMate</span></div><p>Plan. Join. Enjoy.</p><p class="copyright">© <span id="year"></span> EventMate</p></footer>
-
-  <div class="modal-backdrop" id="createModal" hidden>
-    <div class="modal" role="dialog" aria-modal="true"><button class="modal-close" data-close>&times;</button><span class="eyebrow">New group</span><h2>Create your group</h2>
-      <form id="groupForm">
-        <label>Group name<input name="name" required placeholder="e.g. Campbelltown Badminton"></label>
-        <div class="form-row"><label>Group type<select name="groupType"><option>Sports group</option><option>Social group</option><option>Community group</option><option>Family & friends</option><option>Other</option></select></label><label>Sport / activity<select name="sport"><option>Badminton</option><option>Football / Soccer</option><option>Cricket</option><option>Tennis</option><option>Table Tennis</option><option>Basketball</option><option>Volleyball</option><option>Hockey</option><option>Futsal</option><option>Squash</option><option>Running</option><option>Swimming</option><option>Golf</option><option>Other / Custom</option></select></label></div>
-        <label>Usual venue<input name="venue" placeholder="Venue or suburb"></label>
-        <div class="form-row"><label>Session frequency<select name="frequency"><option>Weekly</option><option>Fortnightly</option><option>Monthly</option><option>One-off / as needed</option></select></label><label>Maximum players<input name="capacity" type="number" min="1" placeholder="12"></label></div>
-        <button class="btn btn-primary btn-full" type="submit">Create group</button>
-      </form><p class="modal-note">Prototype: group data is stored only in this browser until the shared database is connected.</p>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="joinModal" hidden>
-    <div class="modal small" role="dialog" aria-modal="true"><button class="modal-close" data-close>&times;</button><span class="eyebrow">Join a group</span><h2>Enter invitation code</h2><form id="joinForm"><label>Group code<input name="code" required placeholder="e.g. BDM-4821"></label><label>Your name<input name="memberName" required placeholder="Your full name"></label><button class="btn btn-primary btn-full" type="submit">Join group</button></form><p class="modal-note">Soon, shared invitation links and QR codes will open this automatically.</p></div>
-  </div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="script.js"></script>
-</body>
-</html>
+<header class="topbar"><a class="brand" href="#home"><span class="brand-mark">E</span><span>EventMate</span></a><nav class="nav"><a href="#sports">Sports</a><a href="#rsvp">Weekly RSVP</a><a href="#money">Costs & Payments</a><a href="#events">Events</a><a href="#how">How it works</a></nav><div class="nav-actions"><button class="btn btn-ghost" data-action="join">Join group</button><button class="btn btn-primary" data-action="create">Create group</button></div></header>
+<main>
+<section class="hero" id="home"><div class="hero-copy"><span class="eyebrow">One place for every group</span><h1>Play together.<br><span>Plan together.</span></h1><p>Create a sports or social group, invite your people, organise recurring sessions, track attendance, split real costs fairly and keep every payment clear.</p><div class="hero-actions"><button class="btn btn-primary btn-lg" data-action="create">Create a group</button><button class="btn btn-light btn-lg" data-action="join">Join with a code</button></div><div class="trust-row"><span>✓ Weekly & fortnightly sessions</span><span>✓ Automatic RSVP reminders</span><span>✓ Admin approval for payments</span></div></div>
+<div class="app-window"><div class="app-top"><div><span class="live-dot"></span> Badminton Legends</div><span class="admin-pill">Admin</span></div><div class="metric-row"><div class="metric"><small>Next session</small><strong>Wed 7:30 PM</strong><span id="heroCount">8 playing</span></div><div class="metric"><small>Group fund</small><strong>$246.80</strong><span>Healthy balance</span></div><div class="metric"><small>Pending</small><strong>3 payments</strong><span>Need approval</span></div></div><div class="session-card"><div class="session-title"><div class="sport-badge">🏸</div><div><small>Weekly session</small><strong>Wednesday Badminton</strong><span>Campbelltown · 7:30–9:30 PM</span></div><span class="status open">RSVP open</span></div><div class="attendee-strip"><span>MA</span><span>RH</span><span>SA</span><span>AK</span><span>+4</span><b id="heroCourts">2 courts suggested</b></div></div><div class="cost-preview"><div><small>Reminder</small><strong>Tue 7:00 PM</strong></div><span>→</span><div><small>Playing</small><strong id="heroPlaying">8</strong></div><span>→</span><div class="total"><small>Courts</small><strong id="heroCourtCount">2</strong></div><div class="per-head"><small>Status</small><strong>Ready</strong></div></div></div></section>
+<section class="section soft" id="sports"><div class="section-heading"><span class="eyebrow">Sports groups</span><h2>Pick your sport. EventMate adapts the session.</h2><p>Every sport starts with the same simple group structure, then shows sport-specific fields such as courts, fields, tables, equipment or match details.</p></div><div class="sport-grid"><article><span>🏸</span><h3>Badminton</h3><p>Courts, shuttles, player caps and per-session sharing.</p></article><article><span>⚽</span><h3>Football</h3><p>Pitch hire, teams, bibs, balls and match attendance.</p></article><article><span>🏏</span><h3>Cricket</h3><p>Ground fees, teams, equipment and match costs.</p></article><article><span>🎾</span><h3>Tennis</h3><p>Court booking, balls, singles/doubles and player limits.</p></article><article><span>🏓</span><h3>Table Tennis</h3><p>Tables, balls, venue fees and rotation lists.</p></article><article><span>🏀</span><h3>Basketball</h3><p>Court booking, teams, game fees and attendance.</p></article><article><span>🏐</span><h3>Volleyball</h3><p>Court/ground, teams, equipment and session fees.</p></article><article><span>🏑</span><h3>Hockey</h3><p>Field hire, match lists, equipment and shared fees.</p></article><article><span>➕</span><h3>More sports</h3><p>Running, swimming, futsal, squash, golf and custom sports.</p></article></div></section>
+<section class="section workflow-section" id="how"><div class="section-heading left"><span class="eyebrow">From group to game</span><h2>A recurring sports group should almost run itself.</h2></div><div class="workflow"><div class="flow-card"><b>01</b><span>👥</span><h3>Create group</h3><p>Creator becomes Owner/Admin and can promote other trusted members to Admin.</p></div><div class="flow-card"><b>02</b><span>🔗</span><h3>Invite members</h3><p>Share a group link, QR code or short code. Members join once and stay in the group.</p></div><div class="flow-card"><b>03</b><span>🔁</span><h3>Schedule sessions</h3><p>One-off, weekly, fortnightly or monthly. Set venue, time, courts and maximum players.</p></div><div class="flow-card"><b>04</b><span>🔔</span><h3>Ask before every game</h3><p>EventMate sends “Are you playing tomorrow?” at the admin-selected reminder time.</p></div><div class="flow-card"><b>05</b><span>✅</span><h3>Confirm attendance</h3><p>Yes, No or Maybe. Live totals update instantly and help the admin decide courts.</p></div><div class="flow-card"><b>06</b><span>🧾</span><h3>Settle actual cost</h3><p>After play, admin confirms actual attendance and real expenses before splitting the cost.</p></div></div></section>
+<section class="section rsvp-section" id="rsvp"><div class="section-heading"><span class="eyebrow">Recurring session RSVP</span><h2>“Are you playing tomorrow?” — answered in one tap.</h2><p>For a Wednesday badminton group, the reminder can go out Tuesday evening. Members answer from the reminder or directly inside the group. Counts update immediately for everyone.</p></div><div class="rsvp-layout"><div class="reminder-phone"><div class="phone-top"><span>EventMate</span><small>Tuesday · 7:00 PM</small></div><div class="notification-card"><div class="notify-icon">🏸</div><div><small>Badminton Legends</small><h3>Are you playing tomorrow?</h3><p>Wednesday · 7:30 PM · Campbelltown</p></div></div><div class="rsvp-actions"><button class="rsvp-btn yes active" data-rsvp="yes">✓ Yes</button><button class="rsvp-btn maybe" data-rsvp="maybe">? Maybe</button><button class="rsvp-btn no" data-rsvp="no">× No</button></div><p class="response-note" id="responseNote">Your response: <strong>Yes</strong> · You can change it until RSVP closes.</p></div><div class="rsvp-dashboard"><div class="rsvp-head"><div><small>NEXT SESSION</small><h3>Wednesday Badminton · 16 Sep</h3><p>7:30–9:30 PM · Campbelltown Sports Centre</p></div><span class="status open">Closes Wed 12 PM</span></div><div class="rsvp-stats"><div class="yes-stat"><small>YES</small><strong id="yesCount">8</strong><span>Playing</span></div><div class="maybe-stat"><small>MAYBE</small><strong id="maybeCount">1</strong><span>Not sure</span></div><div class="no-stat"><small>NO</small><strong id="noCount">2</strong><span>Not playing</span></div><div class="wait-stat"><small>WAITING</small><strong id="waitingCount">3</strong><span>No response</span></div></div><div class="court-suggestion"><div><span class="court-icon">🏟️</span><div><small>COURT SUGGESTION</small><strong id="courtSuggestion">2 courts</strong><p id="courtRule">Based on 8 confirmed players · default 4 players per court</p></div></div><label>Players per court<select id="playersPerCourt"><option value="4" selected>4 players</option><option value="5">5 players</option><option value="6">6 players</option></select></label></div><div class="member-responses"><div class="member-response-head"><span>Member</span><span>Response</span></div><div><span><i>MA</i> Masrur Ahmed</span><span class="answer yes-answer">Yes</span></div><div><span><i>RH</i> Rahim H.</span><span class="answer yes-answer">Yes</span></div><div><span><i>SA</i> Samir A.</span><span class="answer maybe-answer">Maybe</span></div><div><span><i>AK</i> Akhtar K.</span><span class="answer no-answer">No</span></div><div><span><i>+10</i> Other members</span><span class="answer neutral-answer">View all</span></div></div><div class="attendance-warning">Final session cost will use <strong>actual attendance confirmed after the game</strong>, not just the RSVP list.</div></div></div></section>
+<section class="section money-section" id="money"><div class="section-heading"><span class="eyebrow">Badminton example</span><h2>Fair costs without a spreadsheet.</h2><p>Shuttle price is stored once for the group. Each session uses only the number actually consumed, then court and equipment costs are divided among confirmed actual attendees.</p></div><div class="money-grid"><div class="calculator-card"><div class="card-head"><div><small>SESSION COST CALCULATOR</small><h3>Wednesday Badminton · 16 Sep</h3></div><span class="status complete">Actual attendance</span></div><div class="calc-fields"><label>Number of courts<input id="courts" type="number" value="2" min="0"></label><label>Total court booking ($)<input id="courtCost" type="number" value="64" min="0" step="0.01"></label><label>Shuttle tube cost ($)<input id="tubeCost" type="number" value="36" min="0" step="0.01"></label><label>Shuttles per tube<input id="tubeQty" type="number" value="12" min="1"></label><label>Shuttles used today<input id="shuttlesUsed" type="number" value="10" min="0"></label><label>Players actually attended<input id="players" type="number" value="10" min="1"></label></div><div class="formula-box"><div><small>Per shuttle</small><strong id="perShuttle">$3.00</strong><span>Tube cost ÷ shuttles</span></div><div><small>Shuttle cost today</small><strong id="shuttleSession">$30.00</strong><span>Used × per shuttle</span></div><div><small>Total session cost</small><strong id="totalSession">$94.00</strong><span>Court + shuttle</span></div><div class="highlight"><small>Each player pays</small><strong id="playerShare">$9.40</strong><span>Total ÷ actual attendees</span></div></div></div><div class="approval-card"><div class="card-head"><div><small>ADMIN PAYMENT INBOX</small><h3>Waiting for review</h3></div><span class="count-badge">3 pending</span></div><div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Rahim H.</strong><span>$20.00 · PayID · Today 8:42 PM</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div><div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Samir A.</strong><span>$10.00 · Bank transfer · Today 7:12 PM</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div><div class="payment-item"><div class="receipt-icon">🧾</div><div><strong>Akhtar K.</strong><span>$30.00 · PayID · Yesterday</span></div><button class="proof-btn">View proof</button><div class="approval-actions"><button class="approve">✓</button><button class="reject">×</button></div></div><div class="payment-note">Only an approved payment changes the member balance and group fund.</div></div></div></section>
+<section class="section soft" id="events"><div class="section-heading"><span class="eyebrow">Beyond sports</span><h2>Use the same group for the moments around the game.</h2><p>Create one-off social and community events with guest limits, RSVPs, tasks, contributions and shared expenses.</p></div><div class="event-grid"><article class="event-tile bbq"><div class="event-emoji">🔥</div><div><small>Food & Social</small><h3>BBQ</h3><p>Guest RSVP · Food list · Shared shopping · Per-family or per-person split</p></div></article><article class="event-tile picnic"><div class="event-emoji">🧺</div><div><small>Outdoor</small><h3>Picnic</h3><p>Location · What to bring · Families · Transport · Shared costs</p></div></article><article class="event-tile farewell"><div class="event-emoji">🎉</div><div><small>Celebration</small><h3>Farewell Party</h3><p>Invitations · Contributions · Gift fund · Food · Attendance</p></div></article><article class="event-tile trip"><div class="event-emoji">🚙</div><div><small>Travel</small><h3>Group Trip</h3><p>Cars · Accommodation · Fuel · Tickets · Shared itinerary</p></div></article><article class="event-tile dinner"><div class="event-emoji">🍽️</div><div><small>Gathering</small><h3>Dinner</h3><p>Restaurant · Booking count · Menu notes · Split bill</p></div></article><article class="event-tile custom"><div class="event-emoji">✨</div><div><small>Anything</small><h3>Custom Event</h3><p>Start from a blank event and choose exactly what your group needs.</p></div></article></div></section>
+<section class="section admin-section"><div class="admin-demo"><div class="admin-copy"><span class="eyebrow">Clear roles</span><h2>Members see what they need. Admins control what matters.</h2><p>The group owner can add multiple admins. Admins manage sessions, attendance, costs, payment verification and group settings. Members RSVP, view their balance and submit payments.</p><div class="role-list"><span><b>Owner</b> Full control</span><span><b>Admin</b> Manage group & finance</span><span><b>Member</b> RSVP, attend & pay</span><span><b>Guest</b> Event-only access</span></div></div><div class="member-table"><div class="table-head"><span>Member</span><span>Role</span><span>Balance</span><span>Status</span></div><div><span><i>MA</i> Masrur Ahmed</span><span class="role owner">Owner</span><strong>+$24.60</strong><span class="paid">Active</span></div><div><span><i>RH</i> Rahim H.</span><span class="role admin">Admin</span><strong>-$9.40</strong><span class="due">Due</span></div><div><span><i>SA</i> Samir A.</span><span class="role member">Member</span><strong>$0.00</strong><span class="paid">Clear</span></div><div><span><i>AK</i> Akhtar K.</span><span class="role member">Member</span><strong>+$6.20</strong><span class="paid">Credit</span></div></div></div></section>
+<section class="cta-section"><div><span class="eyebrow">EventMate</span><h2>One group. Every session. Every dollar. Clearly managed.</h2><p>Start with badminton tonight, then use the same platform for your whole community.</p></div><button class="btn btn-primary btn-lg" data-action="create">Create your first group</button></section>
+</main>
+<footer><div class="brand footer-brand"><span class="brand-mark">E</span><span>EventMate</span></div><p>Plan. Join. Enjoy.</p><p class="copyright">© <span id="year"></span> EventMate</p></footer>
+<div class="modal-backdrop" id="createModal" hidden><div class="modal" role="dialog" aria-modal="true"><button class="modal-close" data-close>&times;</button><span class="eyebrow">New group</span><h2>Create your group</h2><form id="groupForm"><label>Group name<input name="name" required placeholder="e.g. Campbelltown Badminton"></label><div class="form-row"><label>Group type<select name="groupType"><option>Sports group</option><option>Social group</option><option>Community group</option><option>Family & friends</option><option>Other</option></select></label><label>Sport / activity<select name="sport"><option>Badminton</option><option>Football / Soccer</option><option>Cricket</option><option>Tennis</option><option>Table Tennis</option><option>Basketball</option><option>Volleyball</option><option>Hockey</option><option>Futsal</option><option>Squash</option><option>Running</option><option>Swimming</option><option>Golf</option><option>Other / Custom</option></select></label></div><label>Usual venue<input name="venue" placeholder="Venue or suburb"></label><div class="form-row"><label>Session frequency<select name="frequency"><option>Weekly</option><option>Fortnightly</option><option>Monthly</option><option>One-off / as needed</option></select></label><label>Maximum players<input name="capacity" type="number" min="1" placeholder="12"></label></div><div class="form-row"><label>Reminder<select name="reminder"><option>24 hours before</option><option>48 hours before</option><option>Same day</option><option>Custom</option></select></label><label>RSVP options<select name="rsvpOptions"><option>Yes / No / Maybe</option><option>Yes / No only</option></select></label></div><button class="btn btn-primary btn-full" type="submit">Create group</button></form><p class="modal-note">Prototype: group data is stored only in this browser until the shared database is connected.</p></div></div>
+<div class="modal-backdrop" id="joinModal" hidden><div class="modal small" role="dialog" aria-modal="true"><button class="modal-close" data-close>&times;</button><span class="eyebrow">Join a group</span><h2>Enter invitation code</h2><form id="joinForm"><label>Group code<input name="code" required placeholder="e.g. BDM-4821"></label><label>Your name<input name="memberName" required placeholder="Your full name"></label><button class="btn btn-primary btn-full" type="submit">Join group</button></form><p class="modal-note">Soon, shared invitation links and QR codes will open this automatically.</p></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div><script src="script.js"></script>
+</body></html>
