@@ -2,140 +2,76 @@ const createModal=document.getElementById('createModal');
 const joinModal=document.getElementById('joinModal');
 const toast=document.getElementById('toast');
 document.getElementById('year').textContent=new Date().getFullYear();
-function openModal(modal){modal.hidden=false;document.body.style.overflow='hidden'}
-function closeModal(modal){modal.hidden=true;document.body.style.overflow=''}
-function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600)}
+
+function openModal(modal){if(!modal)return;modal.hidden=false;document.body.style.overflow='hidden'}
+function closeModal(modal){if(!modal)return;modal.hidden=true;document.body.style.overflow=''}
+function showToast(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500)}
+
 document.querySelectorAll('[data-action="create"]').forEach(btn=>btn.addEventListener('click',()=>openModal(createModal)));
 document.querySelectorAll('[data-action="join"]').forEach(btn=>btn.addEventListener('click',()=>openModal(joinModal)));
 document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.closest('.modal-backdrop'))));
-[createModal,joinModal].forEach(modal=>modal.addEventListener('click',e=>{if(e.target===modal)closeModal(modal)}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!createModal.hidden)closeModal(createModal);if(!joinModal.hidden)closeModal(joinModal)}});
+[createModal,joinModal].forEach(modal=>modal?.addEventListener('click',e=>{if(e.target===modal)closeModal(modal)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal(createModal);closeModal(joinModal)}});
 
 function makeCode(sport){const prefix=(sport||'GRP').replace(/[^A-Za-z]/g,'').slice(0,3).toUpperCase()||'GRP';return `${prefix}-${Math.floor(1000+Math.random()*9000)}`}
 
-/* Progressive group setup: group type -> sport -> sport-specific fields */
 const groupForm=document.getElementById('groupForm');
-const groupTypeSelect=groupForm.querySelector('select[name="groupType"]');
-const sportSelect=groupForm.querySelector('select[name="sport"]');
-const sportLabel=sportSelect.closest('label');
-const firstFormRow=groupTypeSelect.closest('.form-row');
+const groupTypeSelect=groupForm?.querySelector('select[name="groupType"]');
+const sportSelect=groupForm?.querySelector('select[name="sport"]');
+const sportLabel=sportSelect?.closest('label');
+const firstFormRow=groupTypeSelect?.closest('.form-row');
 const sportSetup=document.createElement('div');
 sportSetup.className='sport-specific-setup';
 sportSetup.hidden=true;
-firstFormRow.insertAdjacentElement('afterend',sportSetup);
+firstFormRow?.insertAdjacentElement('afterend',sportSetup);
 
-if(!groupTypeSelect.querySelector('option[value=""]')){
-  const opt=document.createElement('option');opt.value='';opt.textContent='Select group type';opt.selected=true;opt.disabled=true;groupTypeSelect.prepend(opt);
-}
-if(!sportSelect.querySelector('option[value=""]')){
-  const opt=document.createElement('option');opt.value='';opt.textContent='Select a sport';opt.selected=true;opt.disabled=true;sportSelect.prepend(opt);
-}
+function prependPlaceholder(select,text){if(!select||select.querySelector('option[value=""]'))return;const opt=document.createElement('option');opt.value='';opt.textContent=text;opt.selected=true;opt.disabled=true;select.prepend(opt)}
+prependPlaceholder(groupTypeSelect,'Select group type');
+prependPlaceholder(sportSelect,'Select a sport');
 
 const sportFields={
-  'Badminton':[
-    ['Usual courts','usualCourts','number','2'],['Players per court','playersPerCourtSetup','number','4'],['Court booking cost ($)','courtBookingCost','number','0.00'],['Shuttle tube cost ($)','shuttleTubeCost','number','36.00'],['Shuttles per tube','shuttlesPerTube','number','12']
-  ],
-  'Football / Soccer':[
-    ['Usual pitch / field','playingArea','text','e.g. Full field'],['Team size','teamSize','number','11'],['Pitch hire cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']
-  ],
-  'Cricket':[
-    ['Format','format','text','e.g. T20'],['Players per side','teamSize','number','11'],['Ground fee ($)','venueCost','number','0.00'],['Equipment cost ($)','equipmentCost','number','0.00']
-  ],
-  'Tennis':[
-    ['Usual courts','usualCourts','number','1'],['Match type','format','text','Singles / Doubles'],['Court booking cost ($)','courtBookingCost','number','0.00'],['Ball cost ($)','equipmentCost','number','0.00']
-  ],
-  'Table Tennis':[
-    ['Usual tables','usualTables','number','2'],['Players per table','playersPerTable','number','4'],['Venue fee ($)','venueCost','number','0.00'],['Ball/equipment cost ($)','equipmentCost','number','0.00']
-  ],
-  'Basketball':[
-    ['Usual courts','usualCourts','number','1'],['Team size','teamSize','number','5'],['Court hire cost ($)','courtBookingCost','number','0.00'],['Number of teams','teamCount','number','2']
-  ],
-  'Volleyball':[
-    ['Usual courts','usualCourts','number','1'],['Team size','teamSize','number','6'],['Court/ground cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']
-  ],
-  'Hockey':[
-    ['Usual field','playingArea','text','Field name/type'],['Team size','teamSize','number','11'],['Field hire cost ($)','venueCost','number','0.00'],['Equipment cost ($)','equipmentCost','number','0.00']
-  ],
-  'Futsal':[
-    ['Usual court','playingArea','text','Court name/type'],['Team size','teamSize','number','5'],['Court hire cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']
-  ],
-  'Squash':[
-    ['Usual courts','usualCourts','number','1'],['Players per court','playersPerCourtSetup','number','2'],['Court cost ($)','courtBookingCost','number','0.00']
-  ],
-  'Running':[
-    ['Usual distance','distance','text','e.g. 5 km'],['Meeting point','meetingPoint','text','Start location']
-  ],
-  'Swimming':[
-    ['Pool / venue','playingArea','text','Pool name'],['Lane booking cost ($)','venueCost','number','0.00'],['Usual lanes','usualLanes','number','1']
-  ],
-  'Golf':[
-    ['Course','playingArea','text','Course name'],['Green fee ($)','venueCost','number','0.00'],['Players per group','playersPerGroup','number','4']
-  ],
-  'Other / Custom':[
-    ['Activity setup','customSetup','text','Describe what should be tracked'],['Venue/equipment cost ($)','venueCost','number','0.00']
-  ]
+ 'Badminton':[['Usual courts','usualCourts','number','2'],['Players per court','playersPerCourtSetup','number','4'],['Court booking cost ($)','courtBookingCost','number','64.00'],['Shuttle tube cost ($)','shuttleTubeCost','number','36.00'],['Shuttles per tube','shuttlesPerTube','number','12']],
+ 'Football / Soccer':[['Pitch / field','playingArea','text','e.g. Full field'],['Team size','teamSize','number','11'],['Pitch hire cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']],
+ 'Cricket':[['Format','format','text','e.g. T20'],['Players per side','teamSize','number','11'],['Ground fee ($)','venueCost','number','0.00'],['Equipment cost ($)','equipmentCost','number','0.00']],
+ 'Tennis':[['Usual courts','usualCourts','number','1'],['Match type','format','text','Singles / Doubles'],['Court booking cost ($)','courtBookingCost','number','0.00'],['Ball cost ($)','equipmentCost','number','0.00']],
+ 'Table Tennis':[['Usual tables','usualTables','number','2'],['Players per table','playersPerTable','number','4'],['Venue fee ($)','venueCost','number','0.00'],['Ball/equipment cost ($)','equipmentCost','number','0.00']],
+ 'Basketball':[['Usual courts','usualCourts','number','1'],['Team size','teamSize','number','5'],['Court hire cost ($)','courtBookingCost','number','0.00'],['Number of teams','teamCount','number','2']],
+ 'Volleyball':[['Usual courts','usualCourts','number','1'],['Team size','teamSize','number','6'],['Court/ground cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']],
+ 'Hockey':[['Usual field','playingArea','text','Field name/type'],['Team size','teamSize','number','11'],['Field hire cost ($)','venueCost','number','0.00'],['Equipment cost ($)','equipmentCost','number','0.00']],
+ 'Futsal':[['Usual court','playingArea','text','Court name/type'],['Team size','teamSize','number','5'],['Court hire cost ($)','venueCost','number','0.00'],['Number of teams','teamCount','number','2']],
+ 'Squash':[['Usual courts','usualCourts','number','1'],['Players per court','playersPerCourtSetup','number','2'],['Court cost ($)','courtBookingCost','number','0.00']],
+ 'Running':[['Usual distance','distance','text','e.g. 5 km'],['Meeting point','meetingPoint','text','Start location']],
+ 'Swimming':[['Pool / venue','playingArea','text','Pool name'],['Lane booking cost ($)','venueCost','number','0.00'],['Usual lanes','usualLanes','number','1']],
+ 'Golf':[['Course','playingArea','text','Course name'],['Green fee ($)','venueCost','number','0.00'],['Players per group','playersPerGroup','number','4']],
+ 'Other / Custom':[['Activity setup','customSetup','text','Describe what should be tracked'],['Venue/equipment cost ($)','venueCost','number','0.00']]
 };
 
-function renderSportFields(){
-  const sport=sportSelect.value;
-  sportSetup.innerHTML='';
-  if(!sport){sportSetup.hidden=true;return}
-  const title=document.createElement('div');title.className='sport-setup-title';title.innerHTML=`<span>SPORT SETUP</span><strong>${sport}</strong><small>Only relevant fields for this sport are shown.</small>`;
-  sportSetup.appendChild(title);
-  const grid=document.createElement('div');grid.className='sport-setup-grid';
-  (sportFields[sport]||sportFields['Other / Custom']).forEach(([label,name,type,placeholder])=>{
-    const wrap=document.createElement('label');wrap.textContent=label;
-    const input=document.createElement('input');input.name=name;input.type=type;input.placeholder=placeholder;input.dataset.sportField='true';
-    if(type==='number'){input.min='0';input.step='any'}
-    wrap.appendChild(input);grid.appendChild(wrap);
-  });
-  sportSetup.appendChild(grid);sportSetup.hidden=false;
-}
+function renderSportFields(){const sport=sportSelect?.value;sportSetup.innerHTML='';if(!sport){sportSetup.hidden=true;return}const title=document.createElement('div');title.className='sport-setup-title';title.innerHTML=`<span>SPORT SETUP</span><strong>${sport}</strong><small>Only relevant fields for this sport are shown.</small>`;sportSetup.appendChild(title);const grid=document.createElement('div');grid.className='sport-setup-grid';(sportFields[sport]||sportFields['Other / Custom']).forEach(([label,name,type,placeholder])=>{const wrap=document.createElement('label');wrap.textContent=label;const input=document.createElement('input');input.name=name;input.type=type;input.placeholder=placeholder;input.dataset.sportField='true';if(type==='number'){input.min='0';input.step='any'}wrap.appendChild(input);grid.appendChild(wrap)});sportSetup.appendChild(grid);sportSetup.hidden=false}
 
-function updateGroupTypeFlow(){
-  const isSports=groupTypeSelect.value==='Sports group';
-  sportLabel.hidden=!isSports;
-  sportSelect.disabled=!isSports;
-  sportSelect.required=isSports;
-  if(!isSports){sportSelect.value='';sportSetup.hidden=true;sportSetup.innerHTML=''}
-}
+function updateGroupTypeFlow(){if(!groupTypeSelect||!sportSelect||!sportLabel)return;const isSports=groupTypeSelect.value==='Sports group';sportLabel.hidden=!isSports;sportSelect.disabled=!isSports;sportSelect.required=isSports;if(!isSports){sportSelect.value='';sportSetup.hidden=true;sportSetup.innerHTML=''}}
 
-groupTypeSelect.addEventListener('change',updateGroupTypeFlow);
-sportSelect.addEventListener('change',renderSportFields);
+groupTypeSelect?.addEventListener('change',updateGroupTypeFlow);
+sportSelect?.addEventListener('change',renderSportFields);
+if(groupTypeSelect){groupTypeSelect.closest('label')?.insertAdjacentHTML('afterbegin','<span class="field-step">STEP 1</span>')}
+if(sportLabel){sportLabel.insertAdjacentHTML('afterbegin','<span class="field-step">STEP 2</span>')}
 updateGroupTypeFlow();
 
-/* Add a subtle step label so the modal clearly feels progressive. */
-groupTypeSelect.closest('label').insertAdjacentHTML('afterbegin','<span class="field-step">STEP 1</span>');
-sportLabel.insertAdjacentHTML('afterbegin','<span class="field-step">STEP 2</span>');
+groupForm?.addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);const sportSetupData={};e.target.querySelectorAll('[data-sport-field]').forEach(input=>sportSetupData[input.name]=input.value);const group={id:makeCode(form.get('sport')),name:form.get('name'),groupType:form.get('groupType'),sport:form.get('sport')||null,sportSetup:sportSetupData,venue:form.get('venue'),frequency:form.get('frequency'),capacity:form.get('capacity'),reminder:form.get('reminder'),rsvpOptions:form.get('rsvpOptions'),ownerRole:'Owner',createdAt:new Date().toISOString()};const groups=JSON.parse(localStorage.getItem('eventmate-groups')||'[]');groups.push(group);localStorage.setItem('eventmate-groups',JSON.stringify(groups));closeModal(createModal);e.target.reset();if(groupTypeSelect)groupTypeSelect.value='';if(sportSelect)sportSelect.value='';updateGroupTypeFlow();showToast(`${group.name} created · Invite code ${group.id}`)});
 
-groupForm.addEventListener('submit',e=>{
-  e.preventDefault();
-  const form=new FormData(e.target);
-  const sportSetupData={};
-  e.target.querySelectorAll('[data-sport-field]').forEach(input=>{sportSetupData[input.name]=input.value});
-  const group={id:makeCode(form.get('sport')),name:form.get('name'),groupType:form.get('groupType'),sport:form.get('sport')||null,sportSetup:sportSetupData,venue:form.get('venue'),frequency:form.get('frequency'),capacity:form.get('capacity'),reminder:form.get('reminder'),rsvpOptions:form.get('rsvpOptions'),ownerRole:'Owner',createdAt:new Date().toISOString()};
-  const groups=JSON.parse(localStorage.getItem('eventmate-groups')||'[]');groups.push(group);localStorage.setItem('eventmate-groups',JSON.stringify(groups));
-  closeModal(createModal);e.target.reset();groupTypeSelect.value='';sportSelect.value='';updateGroupTypeFlow();
-  showToast(`${group.name} created · Invite code ${group.id}`)
-});
+document.getElementById('joinForm')?.addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);const code=form.get('code').trim().toUpperCase();const memberName=form.get('memberName').trim();const groups=JSON.parse(localStorage.getItem('eventmate-groups')||'[]');const found=groups.find(group=>group.id===code);closeModal(joinModal);e.target.reset();showToast(found?`${memberName} joined ${found.name}`:`No demo group found for ${code}`)});
 
-document.getElementById('joinForm').addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);const code=form.get('code').trim().toUpperCase();const memberName=form.get('memberName').trim();const groups=JSON.parse(localStorage.getItem('eventmate-groups')||'[]');const found=groups.find(group=>group.id===code);closeModal(joinModal);e.target.reset();showToast(found?`${memberName} joined ${found.name}`:`No demo group found for ${code}`)});
-
-const calculatorIds=['courtCost','tubeCost','tubeQty','shuttlesUsed','players'];
 function money(n){return `$${Number(n||0).toFixed(2)}`}
-function updateCalculator(){const courtCost=parseFloat(document.getElementById('courtCost').value)||0;const tubeCost=parseFloat(document.getElementById('tubeCost').value)||0;const tubeQty=Math.max(1,parseFloat(document.getElementById('tubeQty').value)||1);const shuttlesUsed=Math.max(0,parseFloat(document.getElementById('shuttlesUsed').value)||0);const players=Math.max(1,parseFloat(document.getElementById('players').value)||1);const perShuttle=tubeCost/tubeQty;const shuttleSession=perShuttle*shuttlesUsed;const totalSession=courtCost+shuttleSession;const playerShare=totalSession/players;document.getElementById('perShuttle').textContent=money(perShuttle);document.getElementById('shuttleSession').textContent=money(shuttleSession);document.getElementById('totalSession').textContent=money(totalSession);document.getElementById('playerShare').textContent=money(playerShare)}
-calculatorIds.forEach(id=>document.getElementById(id)?.addEventListener('input',updateCalculator));updateCalculator();
-document.querySelectorAll('.approve').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.payment-item');const name=item.querySelector('strong').textContent;item.style.opacity='.45';item.querySelector('.approval-actions').innerHTML='<span class="paid">Approved</span>';showToast(`${name}'s payment approved`)}));
+function updateCalculator(){const courtCost=parseFloat(document.getElementById('courtCost')?.value)||0;const tubeCost=parseFloat(document.getElementById('tubeCost')?.value)||0;const tubeQty=Math.max(1,parseFloat(document.getElementById('tubeQty')?.value)||1);const shuttlesUsed=Math.max(0,parseFloat(document.getElementById('shuttlesUsed')?.value)||0);const players=Math.max(1,parseFloat(document.getElementById('players')?.value)||1);const perShuttle=tubeCost/tubeQty;const shuttleSession=perShuttle*shuttlesUsed;const totalSession=courtCost+shuttleSession;const playerShare=totalSession/players;document.getElementById('perShuttle').textContent=money(perShuttle);document.getElementById('shuttleSession').textContent=money(shuttleSession);document.getElementById('totalSession').textContent=money(totalSession);document.getElementById('playerShare').textContent=money(playerShare)}
+['courtCost','tubeCost','tubeQty','shuttlesUsed','players'].forEach(id=>document.getElementById(id)?.addEventListener('input',updateCalculator));
+updateCalculator();
+
+document.querySelectorAll('.approve').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.payment-item');const name=item.querySelector('strong').textContent;item.style.opacity='.55';item.querySelector('.approval-actions').innerHTML='<span class="paid">Approved</span>';showToast(`${name}'s payment approved`)}));
 document.querySelectorAll('.reject').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.payment-item');const name=item.querySelector('strong').textContent;item.style.opacity='.55';item.querySelector('.approval-actions').innerHTML='<span class="due">Rejected</span>';showToast(`${name}'s payment marked for review`)}));
-document.querySelectorAll('.proof-btn').forEach(btn=>btn.addEventListener('click',()=>showToast('Payment screenshot preview will open here in the connected version.')));
+document.querySelectorAll('.proof-btn').forEach(btn=>btn.addEventListener('click',()=>showToast('Payment proof preview will open here in the connected version.')));
 
 let rsvpState={yes:8,maybe:1,no:2,waiting:3,myResponse:'yes'};
-function updateRsvp(){document.getElementById('yesCount').textContent=rsvpState.yes;document.getElementById('maybeCount').textContent=rsvpState.maybe;document.getElementById('noCount').textContent=rsvpState.no;document.getElementById('waitingCount').textContent=rsvpState.waiting;const ppc=parseInt(document.getElementById('playersPerCourt').value)||4;const courts=Math.max(1,Math.ceil(rsvpState.yes/ppc));document.getElementById('courtSuggestion').textContent=`${courts} court${courts===1?'':'s'}`;document.getElementById('courtRule').textContent=`Based on ${rsvpState.yes} confirmed players · default ${ppc} players per court`;document.getElementById('heroCount').textContent=`${rsvpState.yes} playing`;document.getElementById('heroPlaying').textContent=rsvpState.yes;document.getElementById('heroCourtCount').textContent=courts;document.getElementById('heroCourts').textContent=`${courts} court${courts===1?'':'s'} suggested`}
-function setMyRsvp(next){if(next===rsvpState.myResponse)return;const prev=rsvpState.myResponse;if(prev&&rsvpState[prev]>0)rsvpState[prev]--;else if(rsvpState.waiting>0)rsvpState.waiting--;rsvpState[next]++;rsvpState.myResponse=next;document.querySelectorAll('.rsvp-btn').forEach(b=>b.classList.toggle('active',b.dataset.rsvp===next));const labels={yes:'Yes',maybe:'Maybe',no:'No'};document.getElementById('responseNote').innerHTML=`Your response: <strong>${labels[next]}</strong> · You can change it until RSVP closes.`;updateRsvp();showToast(`RSVP updated to ${labels[next]}`)}
+function updateRsvp(){document.getElementById('yesCount').textContent=rsvpState.yes;document.getElementById('maybeCount').textContent=rsvpState.maybe;document.getElementById('noCount').textContent=rsvpState.no;document.getElementById('waitingCount').textContent=rsvpState.waiting;const ppc=parseInt(document.getElementById('playersPerCourt')?.value)||4;const courts=Math.max(1,Math.ceil(rsvpState.yes/ppc));document.getElementById('courtSuggestion').textContent=`${courts} court${courts===1?'':'s'}`;document.getElementById('courtRule').textContent=`Based on ${rsvpState.yes} confirmed players · ${ppc} players per court`;document.getElementById('heroCount').textContent=`${rsvpState.yes} playing`;document.getElementById('heroPlaying').textContent=rsvpState.yes;document.getElementById('heroCourtCount').textContent=courts;document.getElementById('heroCourts').textContent=`${courts} court${courts===1?'':'s'} suggested`}
+function setMyRsvp(next){if(next===rsvpState.myResponse)return;const prev=rsvpState.myResponse;if(prev&&rsvpState[prev]>0)rsvpState[prev]--;else if(rsvpState.waiting>0)rsvpState.waiting--;rsvpState[next]++;rsvpState.myResponse=next;document.querySelectorAll('.rsvp-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.rsvp===next));const labels={yes:'Yes',maybe:'Maybe',no:'No'};document.getElementById('responseNote').innerHTML=`Your response: <strong>${labels[next]}</strong> · You can change it until RSVP closes.`;updateRsvp();showToast(`RSVP updated to ${labels[next]}`)}
 document.querySelectorAll('.rsvp-btn').forEach(btn=>btn.addEventListener('click',()=>setMyRsvp(btn.dataset.rsvp)));
-document.getElementById('playersPerCourt')?.addEventListener('change',updateRsvp);updateRsvp();
-
-const style=document.createElement('style');style.textContent=`
-.field-step{display:block;margin-bottom:4px;color:#6759ee;font-size:.62rem;letter-spacing:.12em}.sport-specific-setup{margin:-2px 0 4px;padding:16px;border:1px solid #dedafc;border-radius:16px;background:#f8f7ff}.sport-specific-setup[hidden]{display:none}.sport-setup-title{margin-bottom:13px}.sport-setup-title span,.sport-setup-title strong,.sport-setup-title small{display:block}.sport-setup-title span{font-size:.62rem;letter-spacing:.12em;color:#6759ee;font-weight:800}.sport-setup-title strong{margin:3px 0;font-size:1rem}.sport-setup-title small{color:#818b9d}.sport-setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sport-setup-grid label{font-size:.76rem!important}.sport-setup-grid input{background:#fff!important}
-.rsvp-section{background:linear-gradient(180deg,#f8f9fd 0,#eef2f8 100%)}.rsvp-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:24px;max-width:1120px;margin:0 auto}.reminder-phone,.rsvp-dashboard{background:#fff;border:1px solid #e3e8f0;border-radius:26px;box-shadow:0 18px 55px rgba(35,43,80,.08)}.reminder-phone{padding:20px;align-self:start}.phone-top{display:flex;justify-content:space-between;align-items:center;padding:0 3px 16px;font-weight:800}.phone-top small{color:#8a93a6;font-weight:600}.notification-card{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;background:linear-gradient(135deg,#171f34,#2a3452);color:#fff}.notify-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:rgba(255,255,255,.12);font-size:1.45rem}.notification-card small{color:#b9c1d0}.notification-card h3{margin:5px 0 7px;font-size:1.18rem}.notification-card p{margin:0;color:#c8cfdb;font-size:.82rem}.rsvp-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.rsvp-btn{padding:13px 8px;border:1px solid #dfe4ed;border-radius:12px;background:#fff;font-weight:800;cursor:pointer}.rsvp-btn.yes{color:#117b58}.rsvp-btn.maybe{color:#936a13}.rsvp-btn.no{color:#b74a4a}.rsvp-btn.active.yes{background:#e5f8ef;border-color:#9fdec6}.rsvp-btn.active.maybe{background:#fff6dd;border-color:#ecd58c}.rsvp-btn.active.no{background:#fff0f0;border-color:#efb4b4}.response-note{margin:14px 2px 2px;color:#778297;font-size:.78rem;line-height:1.5}.rsvp-dashboard{padding:24px}.rsvp-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.rsvp-head small{font-size:.69rem;color:#8b95a7;font-weight:800}.rsvp-head h3{margin:5px 0 6px}.rsvp-head p{margin:0;color:#7b8599;font-size:.8rem}.rsvp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.rsvp-stats>div{padding:15px;border-radius:15px;background:#f6f8fb}.rsvp-stats small,.rsvp-stats span{display:block;font-size:.66rem}.rsvp-stats small{font-weight:800;color:#8791a3}.rsvp-stats strong{display:block;font-size:1.6rem;margin:5px 0}.yes-stat strong{color:#14805d}.maybe-stat strong{color:#9b711b}.no-stat strong{color:#bd5050}.wait-stat strong{color:#69758b}.court-suggestion{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px;border-radius:17px;background:#f0eeff}.court-suggestion>div{display:flex;gap:12px;align-items:center}.court-icon{width:45px;height:45px;display:grid;place-items:center;border-radius:13px;background:#6759ee;color:#fff}.court-suggestion small{display:block;font-size:.66rem;color:#6e64bc;font-weight:800}.court-suggestion strong{display:block;margin:4px 0;font-size:1.1rem}.court-suggestion p{margin:0;font-size:.72rem;color:#756e9a}.court-suggestion label{font-size:.7rem;font-weight:800;color:#6a7185}.court-suggestion select{display:block;margin-top:5px;padding:8px;border:1px solid #d7d2fb;border-radius:9px;background:#fff}.member-responses{margin-top:18px;border:1px solid #e8ebf1;border-radius:16px;overflow:hidden}.member-responses>div{display:grid;grid-template-columns:1fr auto;align-items:center;padding:11px 14px;border-bottom:1px solid #edf0f4;font-size:.78rem}.member-responses>div:last-child{border-bottom:0}.member-response-head{background:#f7f8fb;color:#7e899c;font-size:.66rem!important;font-weight:800;text-transform:uppercase}.member-responses i{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#172033;color:#fff;font-style:normal;font-size:.6rem;margin-right:7px}.answer{padding:5px 9px;border-radius:999px;font-size:.68rem;font-weight:800}.yes-answer{background:#e6f9f0;color:#117b58}.maybe-answer{background:#fff6dd;color:#946d19}.no-answer{background:#fff0f0;color:#b94a4a}.neutral-answer{background:#f1f3f7;color:#6f7a8d}.attendance-warning{margin-top:14px;padding:12px 14px;border-radius:12px;background:#fff8e8;color:#80651e;font-size:.76rem;line-height:1.5}@media(max-width:900px){.rsvp-layout{grid-template-columns:1fr}.rsvp-stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.sport-setup-grid{grid-template-columns:1fr}.rsvp-actions{grid-template-columns:1fr}.rsvp-head,.court-suggestion{flex-direction:column;align-items:flex-start}.rsvp-stats{grid-template-columns:1fr 1fr}}
-`;document.head.appendChild(style);
+document.getElementById('playersPerCourt')?.addEventListener('change',updateRsvp);
+updateRsvp();
